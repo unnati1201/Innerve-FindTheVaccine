@@ -1,0 +1,26 @@
+body{
+  background-color: #e4f9ff;
+}
+
+header{
+  background-color: #0fabbc;
+}
+
+h1{
+  color: #fff;
+  font-family: 'Merriweather', serif;
+  text-align: center;
+}
+
+h5{
+  text-align: center;
+}
+.countryGrid{
+  background-color: #12cad6;
+}
+#map{
+  display: inline-block;
+}
+.myMap{
+  text-align: center;
+}
