@@ -14,12 +14,16 @@
     <br>
   <div class="container">
 
-    <div class="card" style="width: 18rem;">
-    <img src="/images/Bhutan.png" class="card-img-top" alt="...">
-      <div class="card-body">
-        <h5 class="card-title"><a href="/country">Bhutan</a></h5>
+    <% for(var i=0; i<mapNames.length; i++){ %>
+      <div class="card" style="width: 18rem;">
+        <div style="height: 19rem;">
+          <img src="<%= mapImg[i] %>"  class="card-img-top" alt="...">
+        </div>
+        <div class="card-body">
+          <h5 class="card-title"><a href="<%= mapUrl[i] %>"><%= mapNames[i] %></a></h5>
+        </div>
       </div>
-    </div>
+    <% } %>
     </div>
 
     <script src="https://kit.fontawesome.com/c056784b05.js" crossorigin="anonymous"></script>

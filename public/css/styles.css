@@ -1,5 +1,6 @@
 body{
   background-color: #e4f9ff;
+  text-align: center;
 }
 
 header{
@@ -22,5 +23,13 @@ h5{
   display: inline-block;
 }
 .myMap{
+  margin: 30px;
   text-align: center;
+}
+.card{
+  display: inline-block;
+  margin: 10px;
+}
+.card-img-top{
+  padding: 10px;
 }

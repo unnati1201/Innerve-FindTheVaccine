@@ -2,14 +2,14 @@
 <html lang="en">
   <head>
     <meta http-equiv="content-type" content="text/html; charset=UTF-8">
-    <title>Country Map Example</title>
-    <link rel="stylesheet" href="css/styles.css">
-    <script src="mapdata.js"></script>
-    <script src="countrymap.js"></script>
+    <title>Team <%= mapName %></title>
+    <link rel="stylesheet" href="/css/styles.css">
+    <script src="<%= mapData %>"></script>
+    <script src="<%= countryMap %>"></script>
   </head>
   <body>
     <header>
-      <h1>Team Bhutan</h1>
+      <h1>Team <%= mapName %></h1>
     </header>
     <div class="myMap">
       <div id="map"></div>
