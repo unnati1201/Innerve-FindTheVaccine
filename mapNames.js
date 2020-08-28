@@ -20,7 +20,27 @@ module.exports = {
       "dominica",
       "eritrea",
       "ethiopia",
-      "gabon"
+      "gabon",
+      "georgia",
+      "guyana",
+      "iceland",
+      "jamaica",
+      "jordan",
+      "kenya",
+      "kyrgyzstan",
+      "lebanon",
+      "lithuania",
+      "namibia",
+      "niger",
+      "oman",
+      "rwanda",
+      "singapore",
+      "slovakia",
+      "south africa",
+      "south korea",
+      "syria",
+      "togo",
+      "turkmenistan"
     ]
   }
 }
