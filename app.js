@@ -13,6 +13,8 @@ let names = [];
 let mapImg = [];
 let mapUrl = [];
 
+let newItem, mapData, countryMap, name;
+
 app.get("/", (req,res)=>{
   mapNames.mapNames().forEach(function(item){
     const newItem = item.charAt(0).toUpperCase() + item.slice(1);
@@ -26,18 +28,32 @@ app.get("/", (req,res)=>{
 });
 
 app.get("/country/:name", (req,res)=>{
-  const name = req.params.name;
+
+  name = req.params.name;
   mapNames.mapNames().forEach(function(item){
     if(item === name){
-      const newItem = item.charAt(0).toUpperCase() + item.slice(1);
-      const mapData = "/" + name + "/mapData" + name + ".js";
-      const countryMap = "/" + name + "/countrymap" + name + ".js";
+      newItem = item.charAt(0).toUpperCase() + item.slice(1);
+      mapData = "/" + name + "/mapData" + name + ".js";
+      countryMap = "/" + name + "/countrymap" + name + ".js";
       res.render("country", {mapName: newItem, smallName: name, mapData: mapData, countryMap: countryMap});
       res.end();
     }
   });
 });
 
+app.get("/question1", (req,res)=>{
+  res.render("question1", {mapName: newItem, smallName: name, mapData: mapData, countryMap: countryMap});
+})
+
+app.post("/question1", (req,res)=>{
+  const t = req.body.smallName;
+  var thisUrl = "./public/" + t + "/mapdata" + t + ".js";
+  const mapDataFile = require(thisUrl);
+  if(req.body.ans1 === "4"){
+    console.log("Correct answer");
+  }
+  res.redirect("/country/" + name);
+})
 app.listen(3000, (req,res)=>{
   console.log("Server running on port 3000");
 });
