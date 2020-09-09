@@ -6,6 +6,8 @@
     <link rel="stylesheet" href="/css/styles.css">
     <script type="text/javascript" src="<%= mapData %>"></script>
     <script type="text/javascript" src="<%= countryMap %>"></script>
+    <link rel="stylesheet" href="/css/scoreboard.css">
+
   </head>
   <body>
     <header>
@@ -14,5 +16,62 @@
     <div class="myMap">
       <div id="map"></div>
     </div>
+    <table class="scoreboard">
+        <thead>
+            <tr>
+                <th>Questions</th>
+                <th>Age</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td>Question 1</td>
+                <td class="q1"></td>
+            </tr>
+            <tr>
+                <td>Question 2</td>
+                <td class="q2"></td>
+            </tr>
+            <tr>
+                <td>Question 3</td>
+                <td class="q3"></td>
+            </tr>
+            <tr>
+                <td>Question 4</td>
+                <td class="q4"></td>
+            </tr>
+            <tr>
+                <td>Question 5</td>
+                <td class="q5"></td>
+            </tr>
+        </tbody>
+    </table>
+    <input type="hidden" class="input" name="ans" value=<%= ques1 %>>
+    <script>
+    var q1=document.querySelector(".q1");
+    var q2=document.querySelector(".q2");
+    var q3=document.querySelector(".q3");
+    var q4=document.querySelector(".q4");
+    var q5=document.querySelector(".q5");
+    var ans=document.querySelector(".input")
+
+    console.log(ans.value);
+
+    if(ans.value==="4"){
+        q1.classList.remove("q1");
+        q1.classList.add("right");
+    }else if(ans.value==="0"){
+      if(q1.classList==="wrong"){
+        q1.classList.remove("wrong");
+      }else if(q1.classList==="right"){
+        q1.classList.remove("right");
+      }
+      q1.classList.add("q1");
+    }
+    else{
+        q1.classList.remove("q1");
+        q1.classList.add("wrong");
+    }
+    </script>
 	</body>
 </html>

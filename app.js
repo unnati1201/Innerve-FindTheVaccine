@@ -1,7 +1,9 @@
 const express = require("express");
 const bodyParser = require("body-parser");
 const ejs = require("ejs");
+const mongoose = require("mongoose");
 const mapNames = require("./mapNames.js");
+// const scoreboard = require("./public/scoreboard.js");
 
 const app = express();
 
@@ -9,11 +11,28 @@ app.use(bodyParser.urlencoded({extended: true}));
 app.set("view engine", "ejs");
 app.use(express.static("public"));
 
+mongoose.connect("mongodb://localhost:27017/countryDB", {useNewUrlParser: true, useUnifiedTopology: true});
+
+const countrySchema = new mongoose.Schema({
+  name: String,
+  question1: String,
+  question2: String,
+  question3: String,
+  question4: String,
+  question5: String
+},
+{ collection: 'countrys' }
+)
+
+const Country = new mongoose.model("Country",countrySchema);
+
+
 let names = [];
 let mapImg = [];
 let mapUrl = [];
 
 let newItem, mapData, countryMap, name;
+var answer1 = 0;
 
 app.get("/", (req,res)=>{
   mapNames.mapNames().forEach(function(item){
@@ -35,8 +54,27 @@ app.get("/country/:name", (req,res)=>{
       newItem = item.charAt(0).toUpperCase() + item.slice(1);
       mapData = "/" + name + "/mapData" + name + ".js";
       countryMap = "/" + name + "/countrymap" + name + ".js";
-      res.render("country", {mapName: newItem, smallName: name, mapData: mapData, countryMap: countryMap});
-      res.end();
+      // Country.find((err,country)=>{
+      //   if(!err){
+      //     var itemObject = country.toObject();
+      //     console.log(itemObject.name);
+      //     console.log(country);
+      //     console.log(country.question1);
+      //     answer1 = country.question1;
+      //   }
+      // })
+      Country.findOne({name: name},function(err,country){
+
+        if(!err){
+          answer1 = country.question1;
+          // console.log(country.question1);
+          console.log("country:" + answer1);
+          res.render("country", {mapName: newItem, smallName: name, mapData: mapData, countryMap: countryMap, ques1: answer1});
+          res.end();
+        }else{
+          console.log(err);
+        }
+      })
     }
   });
 });
@@ -49,9 +87,19 @@ app.post("/question1", (req,res)=>{
   const t = req.body.smallName;
   var thisUrl = "./public/" + t + "/mapdata" + t + ".js";
   const mapDataFile = require(thisUrl);
-  if(req.body.ans1 === "4"){
-    console.log("Correct answer");
-  }
+  var answer = req.body.ans1;
+  Country.updateOne({name: name}, {question1: answer}, (err)=>{
+    if(err){
+      console.log(err);
+    }else{
+      // answer1 = answer;
+      // console.log(answer1);
+      console.log("Updated");
+      // if(req.body.ans1 === "4"){
+      //   console.log("Correct answer");
+      // }
+    }
+  });
   res.redirect("/country/" + name);
 })
 app.listen(3000, (req,res)=>{

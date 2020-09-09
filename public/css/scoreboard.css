@@ -1,0 +1,28 @@
+table, th, td {
+    border: 1px solid black;
+  }
+.scoreboard{
+  display: inline-block;
+  margin: 100px;
+}
+.q1{
+      background-color: orange;
+  }
+.q2{
+    background-color: orange;
+}
+.q3{
+    background-color: orange;
+}
+.q4{
+    background-color: orange;
+}
+.q5{
+    background-color: orange;
+}
+.right{
+    background-color: green;
+}
+.wrong{
+    background-color: red;
+}

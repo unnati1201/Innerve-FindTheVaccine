@@ -19,12 +19,11 @@ h5{
 .countryGrid{
   background-color: #12cad6;
 }
-#map{
-  display: inline-block;
-}
 .myMap{
   margin: 30px;
   text-align: center;
+  display: inline-block;
+  margin-right: 100px;
 }
 .card{
   display: inline-block;
