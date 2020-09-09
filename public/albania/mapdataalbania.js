@@ -96,7 +96,7 @@ var simplemaps_countrymap_mapdata={
     ALB1521: {
       name: "Korçë",
       inactive: "no",
-      url: "/question1"
+      url: "/question2"
     },
     ALB1523: {
       name: "Berat",
@@ -110,7 +110,7 @@ var simplemaps_countrymap_mapdata={
     ALB1525: {
       name: "Gjirokastër",
       inactive: "no",
-      url: "/question1"
+      url: "/question2"
     },
     ALB1526: {
       name: "Dibër",

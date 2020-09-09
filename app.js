@@ -33,6 +33,7 @@ let mapUrl = [];
 
 let newItem, mapData, countryMap, name;
 var answer1 = 0;
+var answer2 = 0;
 
 app.get("/", (req,res)=>{
   mapNames.mapNames().forEach(function(item){
@@ -75,6 +76,19 @@ app.get("/country/:name", (req,res)=>{
           console.log(err);
         }
       })
+
+      Country.findOne({name: name},function(err,country){
+
+        if(!err){
+          answer2 = country.question2;
+          // console.log(country.question1);
+          console.log("country:" + answer2);
+          res.render("country", {mapName: newItem, smallName: name, mapData: mapData, countryMap: countryMap, ques2: answer2});
+          res.end();
+        }else{
+          console.log(err);
+        }
+      })
     }
   });
 });
@@ -89,6 +103,30 @@ app.post("/question1", (req,res)=>{
   const mapDataFile = require(thisUrl);
   var answer = req.body.ans1;
   Country.updateOne({name: name}, {question1: answer}, (err)=>{
+    if(err){
+      console.log(err);
+    }else{
+      // answer1 = answer;
+      // console.log(answer1);
+      console.log("Updated");
+      // if(req.body.ans1 === "4"){
+      //   console.log("Correct answer");
+      // }
+    }
+  });
+  res.redirect("/country/" + name);
+})
+
+app.get("/question2", (req,res)=>{
+  res.render("question2", {mapName: newItem, smallName: name, mapData: mapData, countryMap: countryMap});
+})
+
+app.post("/question2", (req,res)=>{
+  const t = req.body.smallName;
+  var thisUrl = "./public/" + t + "/mapdata" + t + ".js";
+  const mapDataFile = require(thisUrl);
+  var answer = req.body.ans2;
+  Country.updateOne({name: name}, {question2: answer}, (err)=>{
     if(err){
       console.log(err);
     }else{

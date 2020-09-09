@@ -46,16 +46,21 @@
             </tr>
         </tbody>
     </table>
-    <input type="hidden" class="input" name="ans" value=<%= ques1 %>>
+    <input type="hidden" class="input1" name="ans" value=<%= ques1 %>>
+    <input type="hidden" class="input2" name="ans" value=<%= ques2 %>>
     <script>
     var q1=document.querySelector(".q1");
     var q2=document.querySelector(".q2");
     var q3=document.querySelector(".q3");
     var q4=document.querySelector(".q4");
     var q5=document.querySelector(".q5");
-    var ans=document.querySelector(".input")
+    var ans1=document.querySelector(".input1")
+    var ans2=document.querySelector(".input2")
 
-    console.log(ans.value);
+    console.log(ans1.value);
+    console.log(ans2.value);
+
+// question 1 check
 
     if(ans.value==="4"){
         q1.classList.remove("q1");
@@ -71,6 +76,24 @@
     else{
         q1.classList.remove("q1");
         q1.classList.add("wrong");
+    }
+    
+// question 2 check
+
+    if(ans.value==="6"){
+        q2.classList.remove("q2");
+        q2.classList.add("right");
+    }else if(ans.value==="0"){
+      if(q2.classList==="wrong"){
+        q2.classList.remove("wrong");
+      }else if(q2.classList==="right"){
+        q2.classList.remove("right");
+      }
+      q2.classList.add("q2");
+    }
+    else{
+        q2.classList.remove("q2");
+        q2.classList.add("wrong");
     }
     </script>
 	</body>
