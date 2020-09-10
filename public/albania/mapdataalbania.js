@@ -105,17 +105,17 @@ var simplemaps_countrymap_mapdata={
     ALB1524: {
       name: "Elbasan",
       inactive: "no",
-      url: "/question1"
+      url: ""
     },
     ALB1525: {
       name: "Gjirokastër",
       inactive: "no",
-      url: "/question2"
+      url: ""
     },
     ALB1526: {
       name: "Dibër",
       inactive: "no",
-      url: "/question1"
+      url: ""
     },
     ALB1528: {
       name: "Lezhë",

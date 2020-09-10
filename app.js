@@ -69,26 +69,29 @@ app.get("/country/:name", (req,res)=>{
         if(!err){
           answer1 = country.question1;
           // console.log(country.question1);
-          console.log("country:" + answer1);
-          res.render("country", {mapName: newItem, smallName: name, mapData: mapData, countryMap: countryMap, ques1: answer1});
-          res.end();
-        }else{
-          console.log(err);
-        }
-      })
-
-      Country.findOne({name: name},function(err,country){
-
-        if(!err){
+          console.log("country1:" + answer1);
           answer2 = country.question2;
-          // console.log(country.question1);
-          console.log("country:" + answer2);
-          res.render("country", {mapName: newItem, smallName: name, mapData: mapData, countryMap: countryMap, ques2: answer2});
+          console.log(country.question2);
+          console.log("country2:" + answer2);
+          res.render("country", {mapName: newItem, smallName: name, mapData: mapData, countryMap: countryMap, ques1: answer1, ques2: answer2});
           res.end();
         }else{
           console.log(err);
         }
       })
+
+      // Country.findOne({name: name},function(err,country){
+      //
+      //   if(!err){
+      //     answer2 = country.question2;
+      //     // console.log(country.question1);
+      //     console.log("country:" + answer2);
+      //     res.render("country", {mapName: newItem, smallName: name, mapData: mapData, countryMap: countryMap, ques2: answer2});
+      //     res.end();
+      //   }else{
+      //     console.log(err);
+      //   }
+      // })
     }
   });
 });
@@ -101,7 +104,7 @@ app.post("/question1", (req,res)=>{
   const t = req.body.smallName;
   var thisUrl = "./public/" + t + "/mapdata" + t + ".js";
   const mapDataFile = require(thisUrl);
-  var answer = req.body.ans1;
+  const answer = req.body.ans1;
   Country.updateOne({name: name}, {question1: answer}, (err)=>{
     if(err){
       console.log(err);
@@ -125,7 +128,7 @@ app.post("/question2", (req,res)=>{
   const t = req.body.smallName;
   var thisUrl = "./public/" + t + "/mapdata" + t + ".js";
   const mapDataFile = require(thisUrl);
-  var answer = req.body.ans2;
+  const answer = req.body.ans2;
   Country.updateOne({name: name}, {question2: answer}, (err)=>{
     if(err){
       console.log(err);
